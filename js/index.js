@@ -1,4 +1,4 @@
-window.addEventListener('scroll', () {
+window.addEventListener('scroll', () => {
   parent =  document.getElementById('parallax');
   children = parent.getElementsByTagName('img');
   for(let i = 0; i < children.length; i++) {
