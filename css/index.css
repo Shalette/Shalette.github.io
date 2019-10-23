@@ -1,0 +1,17 @@
+::-webkit-scrollbar {
+    display: none;
+}
+body {
+  margin: 0;
+}
+#parallax {
+  height: 1000px;
+  display: block;
+}
+#parallax img {
+  position: fixed;
+  top: 0;
+  background-position: center !important;
+  transform: translateY(0px);
+  width: 100%;
+}
