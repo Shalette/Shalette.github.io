@@ -1,2 +1,3 @@
-# Shalette.github.io
-Current Interests - Will be updated soon.
+#Shalette's Portfolio
+
+Made with Bootstrap, HTML, CSS & JS.
