@@ -1,3 +1,3 @@
 #Shalette's Portfolio
 
-Made with Bootstrap, HTML, CSS & JS.
+Made with Semantic UI, HTML, CSS & JQuery.
