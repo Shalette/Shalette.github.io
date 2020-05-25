@@ -1,43 +1,71 @@
-(function($) {
-  "use strict"; // Start of use strict
+$( document ).ready(function() {
 
-  // Smooth scrolling using jQuery easing
-  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-      if (target.length) {
-        $('html, body').animate({
-          scrollTop: (target.offset().top - 70)
-        }, 1000, "easeInOutExpo");
-        return false;
-      }
-    }
-  });
-
-  // Closes responsive menu when a scroll trigger link is clicked
-  $('.js-scroll-trigger').click(function() {
-    $('.navbar-collapse').collapse('hide');
-  });
-
-  // Activate scrollspy to add active class to navbar items on scroll
-  $('body').scrollspy({
-    target: '#mainNav',
-    offset: 100
-  });
-
-  // Collapse Navbar
-  var navbarCollapse = function() {
-    if ($("#mainNav").offset().top > 100) {
-      $("#mainNav").addClass("navbar-shrink");
+  $('.ui.sticky').sticky();
+  var header = document.getElementById("top-menu");
+  var sticky = header.offsetTop;
+  $(window).scroll(function() {
+    if (window.pageYOffset > sticky+50) {
+      $('#top-menu').removeClass("secondary pointing sticky");
+      $('#top-menu').addClass("fixed");
+      $('#arrow').css('opacity', '1');
     } else {
-      $("#mainNav").removeClass("navbar-shrink");
+      $('#top-menu').removeClass("fixed");
+      $('#top-menu').addClass("secondary pointing sticky");
+      $('#arrow').css('opacity', '0');
     }
-  };
-  // Collapse now if page is not at top
-  navbarCollapse();
-  // Collapse the navbar when page is scrolled
-  $(window).scroll(navbarCollapse);
 
-})(jQuery); // End of use strict
+    var sec = document.querySelectorAll(".sec");
+    var secs = {};
+    var i = 0;
+  
+    Array.prototype.forEach.call(sec, function(e) {
+      secs[e.id] = e.offsetTop;
+    });
+  
+    for (i in secs) {
+      var selection = document.querySelector('.active');
+      if (window.pageYOffset >= secs[i]-100) {
+        if(selection!==null)
+          document.querySelector('.active').setAttribute('class', 'item');
+        document.querySelector('a[href*=' + i + ']').setAttribute('class', 'active item');
+        console.log(i);
+        
+      }
+      else{
+        if (window.pageYOffset <= secs['About'] - 110 && selection !== null){
+        document.querySelector('.active').setAttribute('class', 'item');
+        }
+      }
+    }    
+  });
 
+  
+  var i = 0;
+  var txt = "Hi. :) I'm Shalette"; /* The text */
+  var speed = 200; /* The speed/duration of the effect in milliseconds */
+  setTimeout(typeWriter, 1000);
+
+  function typeWriter() {
+  if (i < txt.length) {
+      document.getElementById("main").innerHTML += txt.charAt(i);
+      if(txt.charAt(i)==")")
+          document.getElementById("main").innerHTML += "<br>";
+      i++;
+      setTimeout(typeWriter, speed);
+  }
+  }
+
+
+$(".item").on('click', function(event) {
+  $('.item').removeClass("active");
+  $(this).addClass("active");
+  event.preventDefault();
+  $('html,body').animate({scrollTop:$(this.hash).offset().top-100}, 120);
+  });
+
+  $("#arrow").on('click', function(event) {  
+    event.preventDefault();
+    $('html,body').animate({scrollTop:$(this.hash).offset().top}, 120);   
+  });
+
+});
