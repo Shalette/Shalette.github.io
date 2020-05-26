@@ -90,7 +90,7 @@ html, #body{
 }
 
 #Contact{    bottom: 0;
-    background-image: linear-gradient(to bottom, rgba(196,178,249, 1) 65%, rgba(169,233,255,0.1) 100%)
+    background-image: linear-gradient(to bottom, rgba(196,178,249, 0.9) 50%, rgba(169,233,255,0.05) 100%)
 
 }
 #footer{
